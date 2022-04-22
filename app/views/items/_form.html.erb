@@ -1,0 +1,59 @@
+<%= form_with(model: item) do |form| %>
+  <% if item.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+        <% item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <% if @edit %>
+  <div class="mb-3">
+    <h5>Categories: <%= item.categories_name %></h5>
+  </div>
+  <% end %>
+
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div>
+    <%= form.label :desc, style: "display: block" %>
+    <%= form.text_field :desc %>
+  </div>
+
+  <div>
+    <% if !@edit %>
+    <label for="category">Category:</label><br>
+    <select name="category_id" id="category">
+      <option value="">Pilih Kategori</option>
+      <% @categories.each do |category| %>
+        <option value=<%= category.id %>"><%= category.name %></option>
+      <% end %> 
+    </select>
+    <% else %>
+    <label for="category">New Category:</label><br>
+    <select name="category_id" id="category">
+      <option selected value="">Pilih Kategori</option>
+      <% @categories.each do |category| %>
+          <option value=<%= category.id %>"><%= category.name %></option>
+      <% end %>
+
+    </select>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

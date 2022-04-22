@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Items</h1>
+
+<div id="items">
+  <% @items.each do |item| %>
+    <%= render item %>
+    <a href="/items/<%= item.id %>">show</a>
+    <a href="/items/<%= item.id %>/edit">edit</a>
+    <%= link_to "delete", item, data: { 
+           turbo_method: :delete,
+           turbo_confirm: "Really?" } %>
+  <% end %>
+</div>
+
+<%= link_to "New item", new_item_path %>
