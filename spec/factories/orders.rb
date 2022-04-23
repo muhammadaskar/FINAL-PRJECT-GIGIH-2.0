@@ -1,8 +1,14 @@
 FactoryBot.define do
   factory :order do
-    customer_id { 1 }
+    name { "MyString" }
+    email { "MyString" }
+    phone { "MyString" }
+    address { "MyString" }
+    item_id { 1 }
     total { 1.5 }
-    order_date { "2022-04-21 22:36:39" }
+    order_date { "2022-04-23 11:52:52" }
     status { "MyString" }
+    quantity { 1 }
+    item_price { 1.5 }
   end
 end

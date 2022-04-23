@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_21_153951) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_23_035252) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -24,15 +24,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_153951) do
     t.index ["item_id", "category_id"], name: "index_categorization_on_item_id_and_category_id"
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "phone"
-    t.string "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "desc"
@@ -41,23 +32,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_153951) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "order_details", id: false, force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "item_id", null: false
-    t.integer "quantity"
-    t.float "item_price"
-    t.index ["item_id", "order_id"], name: "index_order_details_on_item_id_and_order_id"
-    t.index ["order_id", "item_id"], name: "index_order_details_on_order_id_and_item_id"
-  end
-
   create_table "orders", force: :cascade do |t|
-    t.integer "customer_id"
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.string "address"
+    t.integer "item_id"
     t.float "total"
     t.datetime "order_date"
     t.string "status"
+    t.integer "quantity"
+    t.float "item_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
 end
